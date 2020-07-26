@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Manager</title>
+  <script src="jquery.js"></script>
+  <script src="lib/anusree.js"></script>
+  <script src="models/expense.js"></script>
+  <script src="views/expense-list-view.js"></script>
+  <script src="views/expense-form-view.js"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet"> -->
+
+  <style type="text/css">
+    html, body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    h1.heading{
+      text-align: center;
+    }
+
+    .container{
+      border: 1px solid black;
+      padding: 30px;
+      width: 90%;
+    }
+
+    .column1{
+      float: left;
+      width: 40%;
+    }
+
+    .column2{
+      float: right;
+      width: 50%;
+    }
+    
+    .row:after{
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    button{
+      margin-top: 10px;
+    }
+
+    .txtAlert, .amountAlert{
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+    table, th, td{
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 3px;
+    }
+    h2{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="heading"><i class="fa fa-money"></i> Expense Manager</h1>
+  <div class="container">
+    <div class="row">
+      <div class="column1">
+        <h3>Expense Form</h3>
+        <div id="expense-form"></div>
+      <div class="column2">
+        <h3>Essential Expenses</h3>
+        <div id="essential-expense-list-container"></div>
+        <h3>Luxury Expenses</h3>
+        <div id="luxury-expense-list-container"></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <ul class="expenses"></ul>
+</body>
+
+<script type="text/javascript">
+  const essentialExpenseListView = new ExpenseListView({
+    id: 'essential-expense-list-container'
+  });
+
+  const luxuryExpenseListView = new ExpenseListView({
+    id: 'luxury-expense-list-container'
+  });
+
+  const expenseForm = new ExpenseFormView({
+    id: 'expense-form'
+  });
+
+  expenseForm.callThisWhenSomeoneClicksAdd(function(data) {
+    essentialExpenseListView.add(data);
+  });
+
+  new ColorBox({
+    id: 'expense-form',
+    color: 'red'
+  });
+
+  new ColorBox({
+    color: 'green'
+  });
+
+  
+  let notifier = new ErrorNotification();
+  notifier.notify({
+    message: 'reached here',
+    timeout: 1000
+  });
+
+  let notifier = new Notification({
+    timeout: 1000
+  });
+  notifier.error({
+    message: 'An error occured'
+  });
+
+  notifier.info({
+    message: 'This is an info'
+  });
+
+  notifier.success({
+    message: 'This is a success message'
+  });
+
+  notifier.warning({
+    message: 'This is a warning'
+  });
+
+  // const $txt = $('.txt');
+  // console.log($txt);
+  // const addBtn = $('.addBtn');
+  // const txtAlert = $('.txtAlert');
+  // const amountAlert = $('.amountAlert');
+  // let isValid = true;
+  // $('document').ready(function () {
+  //   const onAdd = function(){
+  //     const txt = $('.txt').val();
+  //     const amount = $('.amount').val();
+  //     const type = $('.expense-type').val();
+      
+  //     if (!txt || txt === ''){
+  //       txtAlert.show();
+  //       isValid = false;
+  //     }else{
+  //       txtAlert.hide();
+  //     }
+
+  //     if (!amount || amount === ''){
+  //       amountAlert.show();
+  //       isValid = false;
+  //     }
+  //     else{
+  //       amountAlert.hide();
+  //     }
+  //     if (isValid){
+  //       if(type === 'essential') {
+  //         essentialExpenseListView.add({
+  //           description: txt,
+  //           amount: amount
+  //         });
+  //       }
+
+  //       if(type === 'luxury') {
+  //         luxuryExpenseListView.add({
+  //           description: txt,
+  //           amount: amount
+  //         });
+  //       }
+        // var markup = "<tr><td></td><td>" +txt+ "</td><td>" +amount+ "</td></tr>";
+        // $("table tbody").append(markup);
+    //   }
+
+    // }
+    
+    //   addBtn.click(onAdd);
+
+    // let expenseModel = new ExpenseModel();
+    // expenseModel.getAll(function(data) {
+    //   for (i = 0; i < data.length; i++) {
+    //     var expense = data[i];
+    //     essentialExpenseListView.add({
+    //       description: expense.description,
+    //       amount: expense.amount
+    //     });
+    //   }     
+    // });
+      
+</script>
+</html>
